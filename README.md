@@ -49,3 +49,85 @@ The **Lead Management System** is a CRM-style application built using **Laravel 
 ```bash
 git clone https://github.com/YOUR_USERNAME/lead-management-system.git
 cd lead-management-system
+
+2️⃣ Install Composer Dependencies
+
+composer install
+
+3️⃣ Create Environment File
+
+cp .env.example .env
+
+4️⃣ Generate Application Key
+
+php artisan key:generate
+
+
+5️⃣ Configure SQLite Database
+
+Create SQLite file:
+touch database/database.sqlite
+
+Update .env:
+DB_CONNECTION=sqlite
+DB_DATABASE=database/database.sqlite
+
+
+6️⃣ Run Migrations
+
+php artisan migrate
+
+7️⃣ Install Spatie Permission Package
+
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+php artisan migrate
+
+8️⃣ Install Laravel Sanctum
+
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+php artisan migrate
+
+9️⃣ Install Laravel Sanctum
+
+composer require laravel/sanctum
+
+🔟 Publish Sanctum
+
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+php artisan migrate
+
+1️⃣1️⃣ Start Laravel Server
+
+php artisan serve
+
+🔑 Generate API Token
+
+Generate Token in Tinker
+php artisan tinker
+
+Then:
+$user = App\Models\User::find(1);
+$token = $user->createToken('API Token')->plainTextToken;
+$token;
+
+
+📡 API Request (Thunder Client)
+
+Endpoint
+POST http://127.0.0.1:8000/api/leads/create
+
+Headers
+Authorization: Bearer YOUR_TOKEN
+Accept: application/json
+
+JSON Body
+
+{
+  "name": "Yash Kodre",
+  "email": "yash@example.com",
+  "phone": "9552973186",
+  "source": "Google",
+  "status": "New"
+}
+
+
